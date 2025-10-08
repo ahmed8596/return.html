@@ -2,215 +2,205 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>نموذج الإرجاع والاستبدال</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>نموذج الإرجاع والاستبدال</title>
   <style>
-    :root {
-      --main: #2e5d88;
-      --light: #f4f7fb;
-      --white: #fff;
-      --shadow: rgba(0, 0, 0, 0.15);
-    }
-
-    * {
-      box-sizing: border-box;
-      font-family: 'Tajawal', sans-serif;
-    }
-
     body {
-      background: linear-gradient(135deg, var(--main), #3d7ab4);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background-color: #2e5d88;
+      font-family: "Tajawal", sans-serif;
+      color: #fff;
       margin: 0;
-      padding: 20px;
+      padding: 0;
     }
 
     .container {
-      background: rgba(255,255,255,0.15);
-      backdrop-filter: blur(12px);
-      border-radius: 20px;
-      box-shadow: 0 6px 25px var(--shadow);
-      width: 100%;
-      max-width: 650px;
-      padding: 35px 25px;
-      color: var(--white);
-      animation: fadeIn 0.8s ease-out;
-      transition: 0.3s ease-in-out;
+      max-width: 700px;
+      margin: 40px auto;
+      background-color: #ffffff1a;
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 0.8s ease;
     }
 
-    .container:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
-    }
-
-    h2 {
+    h1 {
       text-align: center;
-      font-size: 1.8rem;
-      margin-bottom: 20px;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
+      margin-bottom: 25px;
+      color: #fff;
     }
 
     label {
-      font-weight: 600;
-      font-size: 1rem;
-      margin-bottom: 4px;
       display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #f0f0f0;
     }
 
-    input, textarea, select {
+    input, select, textarea {
       width: 100%;
       padding: 10px;
+      margin-bottom: 18px;
       border: none;
-      border-radius: 10px;
-      background: var(--white);
+      border-radius: 8px;
       font-size: 15px;
-      color: #333;
-      outline: none;
-      transition: 0.2s;
-    }
-
-    input:focus, textarea:focus, select:focus {
-      box-shadow: 0 0 0 3px rgba(255,255,255,0.3);
     }
 
     input[type="file"] {
-      padding: 8px;
-      background: #f1f5f9;
-      border: 1px solid #ccc;
-      color: #333;
+      background-color: #fff;
     }
 
     button {
-      background: var(--white);
-      color: var(--main);
-      font-weight: bold;
+      background-color: #1c3f63;
+      color: white;
       border: none;
-      border-radius: 12px;
-      padding: 12px;
+      padding: 12px 25px;
+      border-radius: 8px;
       font-size: 16px;
       cursor: pointer;
       transition: 0.3s;
     }
 
     button:hover {
-      background: #e6eef7;
-      transform: translateY(-2px);
+      background-color: #214d77;
+      transform: scale(1.05);
     }
 
-    hr {
-      border: 0.5px solid rgba(255,255,255,0.3);
-      margin: 15px 0;
-    }
-
-    .success {
-      display: none;
-      text-align: center;
-      background: #27ae60;
-      color: white;
-      padding: 12px;
-      border-radius: 10px;
-      margin-top: 10px;
-      animation: fadeIn 0.5s ease-in-out;
+    .add-product {
+      margin-bottom: 25px;
+      background-color: #356da0;
     }
 
     @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(10px);}
-      to {opacity: 1; transform: translateY(0);}
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .success {
+      text-align: center;
+      background-color: #1c3f63;
+      color: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      margin-top: 25px;
+      font-size: 18px;
     }
 
     @media (max-width: 600px) {
       .container {
-        padding: 25px 20px;
+        margin: 20px;
+        padding: 20px;
       }
-      h2 {
-        font-size: 1.5rem;
+      h1 {
+        font-size: 20px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h2>نموذج الإرجاع والاستبدال</h2>
-    <form id="returnForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" enctype="multipart/form-data">
-      
-      <label>الاسم</label>
-      <input type="text" name="الاسم" required>
 
-      <label>رقم الطلب</label>
-      <input type="text" name="رقم الطلب" id="orderNumber" readonly>
+  <div class="container">
+    <h1>طلب إرجاع أو استبدال</h1>
+
+    <form id="returnForm" action="https://formsubmit.co/ahmedalslamy000@gmail.com" method="POST" enctype="multipart/form-data">
+
+      <!-- بيانات العميل -->
+      <label>الاسم الكامل</label>
+      <input type="text" name="الاسم الكامل" required>
+
+      <label>رقم الطلب (الخاص بالعميل)</label>
+      <input type="text" name="رقم الطلب" required>
 
       <label>العنوان</label>
-      <input type="text" name="العنوان" required>
+      <textarea name="العنوان" required></textarea>
 
-      <label>سبب الإرجاع أو الاستبدال</label>
-      <textarea name="سبب الإرجاع أو الاستبدال" rows="3" required></textarea>
+      <label>سبب الإرجاع أو الاستبدال العام</label>
+      <textarea name="السبب العام" placeholder="اكتب باختصار سبب الإرجاع أو الاستبدال"></textarea>
 
-      <label>ملاحظة العميل</label>
-      <textarea name="ملاحظة العميل" rows="2"></textarea>
+      <label>ملاحظات إضافية</label>
+      <textarea name="ملاحظات"></textarea>
 
-      <label>إضافة صورة (اختياري)</label>
+      <label>صورة مرفقة (اختياري)</label>
       <input type="file" name="صورة">
 
-      <hr>
+      <!-- قسم المنتجات -->
+      <div id="products">
+        <div class="product">
+          <h3>تفاصيل المنتج</h3>
 
-      <label>المنتج الحالي</label>
-      <input type="text" name="المنتج الحالي" required>
+          <label>رقم موديل المنتج الحالي</label>
+          <input type="text" name="رقم موديل المنتج الحالي">
 
-      <label>المقاس</label>
-      <select name="المقاس">
-        <option value="M">M</option>
-        <option value="L">L</option>
-        <option value="XL">XL</option>
-        <option value="2XL">2XL</option>
-        <option value="3XL">3XL</option>
-        <option value="4XL">4XL</option>
-        <option value="5XL">5XL</option>
-      </select>
+          <label>نوع المنتج</label>
+          <select name="نوع المنتج">
+            <option value="تيشيرت">تيشيرت</option>
+            <option value="بنطلون">بنطلون</option>
+            <option value="شورت">شورت</option>
+            <option value="طقم">طقم</option>
+            <option value="بلوفر">بلوفر</option>
+            <option value="شوز">شوز</option>
+          </select>
 
-      <label>المنتج الجديد</label>
-      <input type="text" name="المنتج الجديد">
+          <label>مقاس المنتج الحالي</label>
+          <select name="مقاس المنتج الحالي">
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+            <option value="2XL">2XL</option>
+            <option value="3XL">3XL</option>
+            <option value="4XL">4XL</option>
+            <option value="5XL">5XL</option>
+          </select>
 
-      <label>منتج إضافي (اختياري)</label>
-      <textarea name="منتج إضافي" rows="2"></textarea>
+          <label>سبب الاستبدال أو الاسترجاع</label>
+          <textarea name="سبب الاستبدال أو الاسترجاع"></textarea>
 
+          <label>رقم موديل المنتج الجديد</label>
+          <input type="text" name="رقم موديل المنتج الجديد">
+
+          <label>مقاس المنتج الجديد</label>
+          <select name="مقاس المنتج الجديد">
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+            <option value="2XL">2XL</option>
+            <option value="3XL">3XL</option>
+            <option value="4XL">4XL</option>
+            <option value="5XL">5XL</option>
+          </select>
+        </div>
+      </div>
+
+      <button type="button" class="add-product" onclick="addProduct()">➕ إضافة منتج آخر</button>
       <button type="submit">إرسال الطلب</button>
+
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_subject" value="طلب إرجاع / استبدال جديد">
     </form>
 
-    <div class="success" id="successMsg">✅ تم إرسال الطلب بنجاح!</div>
+    <div id="successMessage" class="success" style="display:none;">
+      ✅ تم إرسال طلبك بنجاح  
+      <br>رقم المرجع الخاص بك: <span id="orderRef"></span>
+    </div>
   </div>
 
   <script>
-    // رقم الطلب العشوائي
-    const orderInput = document.getElementById("orderNumber");
-    orderInput.value = "LR-" + Math.floor(100000 + Math.random() * 900000);
+    // إضافة منتج آخر
+    function addProduct() {
+      const productSection = document.querySelector('.product').cloneNode(true);
+      document.getElementById('products').appendChild(productSection);
+    }
 
-    const form = document.getElementById("returnForm");
-    const successMsg = document.getElementById("successMsg");
-
-    form.addEventListener("submit", async (e) => {
+    // توليد رقم عشوائي بعد الإرسال
+    const form = document.getElementById('returnForm');
+    form.addEventListener('submit', function(e) {
       e.preventDefault();
-      const data = new FormData(form);
-      const response = await fetch(form.action, {
-        method: "POST",
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      });
-
-      if (response.ok) {
-        successMsg.style.display = "block";
-        form.reset();
-        orderInput.value = "LR-" + Math.floor(100000 + Math.random() * 900000);
-      } else {
-        alert("حدث خطأ أثناء الإرسال، حاول مرة أخرى");
-      }
+      const randomRef = 'LR-' + Math.floor(100000 + Math.random() * 900000);
+      document.getElementById('orderRef').innerText = randomRef;
+      form.style.display = 'none';
+      document.getElementById('successMessage').style.display = 'block';
+      form.submit(); // إرسال فعلي لـ FormSubmit
     });
   </script>
+
 </body>
 </html>
