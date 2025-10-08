@@ -6,7 +6,7 @@
   <title>طلب إرجاع أو استبدال</title>
   <style>
     body {
-      background-color: #2e5d88;
+      background-color: #2b2b2b; /* رمادي غامق */
       font-family: "Tajawal", sans-serif;
       color: #fff;
       margin: 0;
@@ -16,10 +16,10 @@
     .container {
       max-width: 700px;
       margin: 40px auto;
-      background-color: #ffffff1a;
+      background-color: #3a3a3a; /* رمادي فاتح نسبي */
       border-radius: 16px;
       padding: 25px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
       animation: fadeIn 0.8s ease;
     }
 
@@ -33,7 +33,7 @@
       display: block;
       margin-bottom: 8px;
       font-weight: bold;
-      color: #f0f0f0;
+      color: #fff;
     }
 
     input, select, textarea {
@@ -45,12 +45,17 @@
       font-size: 15px;
     }
 
+    input, textarea {
+      color: #000;
+      background-color: #fff;
+    }
+
     input[type="file"] {
       background-color: #fff;
     }
 
     button {
-      background-color: #1c3f63;
+      background-color: #e53935; /* أحمر */
       color: white;
       border: none;
       padding: 12px 25px;
@@ -61,13 +66,13 @@
     }
 
     button:hover {
-      background-color: #214d77;
+      background-color: #c62828;
       transform: scale(1.05);
     }
 
     .add-product {
       margin-bottom: 25px;
-      background-color: #356da0;
+      background-color: #d32f2f;
     }
 
     @keyframes fadeIn {
@@ -77,7 +82,7 @@
 
     .success {
       text-align: center;
-      background-color: #1c3f63;
+      background-color: #e53935;
       color: #fff;
       padding: 25px;
       border-radius: 12px;
@@ -93,13 +98,14 @@
     }
 
     .product-type label {
-      background-color: #356da0;
+      background-color: #b0b0b0; /* رمادي فاتح */
       padding: 10px 15px;
       border-radius: 8px;
       cursor: pointer;
       transition: 0.2s;
       flex-grow: 1;
       text-align: center;
+      color: #000;
     }
 
     .product-type input[type="radio"] {
@@ -107,7 +113,8 @@
     }
 
     .product-type input[type="radio"]:checked + label {
-      background-color: #1c3f63;
+      background-color: #e53935; /* أحمر */
+      color: #fff;
       border: 2px solid #fff;
     }
 
