@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>نموذج الإرجاع والاستبدال</title>
+  <title>طلب إرجاع أو استبدال</title>
   <style>
     body {
       background-color: #2e5d88;
@@ -85,6 +85,32 @@
       font-size: 18px;
     }
 
+    .product-type {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .product-type label {
+      background-color: #356da0;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.2s;
+      flex-grow: 1;
+      text-align: center;
+    }
+
+    .product-type input[type="radio"] {
+      display: none;
+    }
+
+    .product-type input[type="radio"]:checked + label {
+      background-color: #1c3f63;
+      border: 2px solid #fff;
+    }
+
     @media (max-width: 600px) {
       .container {
         margin: 20px;
@@ -102,16 +128,20 @@
     <h1>طلب إرجاع أو استبدال</h1>
 
     <form id="returnForm" action="https://formsubmit.co/ahmedalslamy000@gmail.com" method="POST" enctype="multipart/form-data">
+      
+      <!-- رقم المرجع الداخلي (مخفي) -->
+      <input type="hidden" id="internalRef" name="المرجع الداخلي">
 
       <!-- بيانات العميل -->
       <label>الاسم الكامل</label>
       <input type="text" name="الاسم الكامل" required>
 
-      <label>رقم الطلب (الخاص بالعميل)</label>
+      <label>رقم الطلب الخاص بالعميل</label>
       <input type="text" name="رقم الطلب" required>
 
       <label>العنوان</label>
-      <textarea name="العنوان" required></textarea>
+      <textarea name="العنوان" id="address" required placeholder="اكتب عنوانك أو استخدم تحديد الموقع"></textarea>
+      <button type="button" onclick="getLocation()">📍 تحديد موقعي</button>
 
       <label>سبب الإرجاع أو الاستبدال العام</label>
       <textarea name="السبب العام" placeholder="اكتب باختصار سبب الإرجاع أو الاستبدال"></textarea>
@@ -131,14 +161,25 @@
           <input type="text" name="رقم موديل المنتج الحالي">
 
           <label>نوع المنتج</label>
-          <select name="نوع المنتج">
-            <option value="تيشيرت">تيشيرت</option>
-            <option value="بنطلون">بنطلون</option>
-            <option value="شورت">شورت</option>
-            <option value="طقم">طقم</option>
-            <option value="بلوفر">بلوفر</option>
-            <option value="شوز">شوز</option>
-          </select>
+          <div class="product-type">
+            <input type="radio" id="tshirt" name="نوع المنتج" value="تيشيرت" required>
+            <label for="tshirt">تيشيرت</label>
+
+            <input type="radio" id="pants" name="نوع المنتج" value="بنطلون">
+            <label for="pants">بنطلون</label>
+
+            <input type="radio" id="short" name="نوع المنتج" value="شورت">
+            <label for="short">شورت</label>
+
+            <input type="radio" id="set" name="نوع المنتج" value="طقم">
+            <label for="set">طقم</label>
+
+            <input type="radio" id="pullover" name="نوع المنتج" value="بلوفر">
+            <label for="pullover">بلوفر</label>
+
+            <input type="radio" id="shoes" name="نوع المنتج" value="شوز">
+            <label for="shoes">شوز</label>
+          </div>
 
           <label>مقاس المنتج الحالي</label>
           <select name="مقاس المنتج الحالي">
@@ -184,13 +225,32 @@
   </div>
 
   <script>
-    // إضافة منتج آخر
+    // رقم مرجع داخلي مخفي
+    document.getElementById('internalRef').value = 'INT-' + Math.floor(100000 + Math.random() * 900000);
+
+    // تحديد الموقع
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const lat = position.coords.latitude.toFixed(4);
+            const lon = position.coords.longitude.toFixed(4);
+            document.getElementById('address').value = `موقعي: ${lat}, ${lon}`;
+          },
+          (error) => alert('لم نتمكن من تحديد موقعك.')
+        );
+      } else {
+        alert('المتصفح لا يدعم تحديد الموقع.');
+      }
+    }
+
+    // إضافة منتج جديد
     function addProduct() {
       const productSection = document.querySelector('.product').cloneNode(true);
       document.getElementById('products').appendChild(productSection);
     }
 
-    // توليد رقم عشوائي بعد الإرسال
+    // توليد رقم مرجع للعميل بعد الإرسال
     const form = document.getElementById('returnForm');
     form.addEventListener('submit', function(e) {
       e.preventDefault();
@@ -198,7 +258,7 @@
       document.getElementById('orderRef').innerText = randomRef;
       form.style.display = 'none';
       document.getElementById('successMessage').style.display = 'block';
-      form.submit(); // إرسال فعلي لـ FormSubmit
+      form.submit();
     });
   </script>
 
